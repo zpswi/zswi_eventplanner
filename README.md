@@ -1,0 +1,1 @@
+# Systém pro správu událostí
