@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from app.forms import AddEventForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import  redirect
+from app.models import Event
 
 def index(request):
     html = render(request, "app/index.html")
@@ -28,6 +29,12 @@ def add_event(request):
 
     return HttpResponseRedirect(reverse('index'))
 
+def events(request):
+    return render(request, "events/list.html", {"events": Event.objects.all()})
+    
+def event_detail(request, event_id):
+    event = Event.objects.get(id=event_id)
+    return render(request, "events/detail.html", {"event": event})
 
 def signup(request):
     if request.method == 'POST':

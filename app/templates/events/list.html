@@ -1,0 +1,38 @@
+
+{% extends 'app/base.html' %}
+
+
+{% block content %}
+
+<h2 class="mb-4">Upcoming events</h2>
+
+{% for event in events %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="card-title d-flex justify-content-between">
+                <h5><a href="{% url 'event_detail' event.id %}" class="text-decoration-none text-primary">{{ event.title }}</a></h5>
+                <div class="d-flex justify-content-start">
+                    <div class="me-2">
+                        Start: <span class="badge bg-primary">{{ event.start_time }}</span>
+                    </div>
+                    <div class="ms-2">
+                        End: <span class="badge bg-primary">{{ event.end_time }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-text">
+                <p>
+                    {{ event.description }}
+                </p>
+                <div>
+                    <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">Detail -></a>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
