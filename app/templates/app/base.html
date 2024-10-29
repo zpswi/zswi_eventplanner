@@ -34,12 +34,13 @@
             {% endif %}
             
             
-            
-            <button class="btn btn-success me-3 mb-3 mb-lg-0" type="button"
-                    data-bs-toggle="modal" data-bs-target="#addEventModal"
-            >
-                Create event
-            </button>
+            {% if user.is_authenticated %}
+                <button class="btn btn-success me-3 mb-3 mb-lg-0" type="button"
+                        data-bs-toggle="modal" data-bs-target="#addEventModal"
+                >
+                    Create event
+                </button>
+            {% endif %}
               
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Event name..." aria-label="Search">

@@ -7,7 +7,12 @@ from django.contrib.auth import get_user_model
 class Event(models.Model):
     title = models.CharField(max_length=200)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    participants = models.ManyToManyField(get_user_model(), related_name='event_participants', default=[])
+    participants = models.ManyToManyField(
+        get_user_model(),
+        related_name='event_participants',
+        default=[],
+        blank=True
+    )
     capacity = models.IntegerField()
     description = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)

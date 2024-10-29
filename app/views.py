@@ -24,6 +24,8 @@ def login_test(request):
 def add_event(request):
     if request.method == 'POST':
         form = AddEventForm(request.POST)
+        form.instance.user = request.user
+
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, "Created new event")
