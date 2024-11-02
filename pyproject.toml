@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "eventplanner"
+version = "0.1.0"
+description = "Web application for event planning"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Django = "^5.1.2"
+django-crispy-forms = "^2.3"
+crispy-bootstrap5 = "^2024.10"
+mysqlclient = "^2.2.5"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.13.0"
+pylint = "^3.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
