@@ -81,8 +81,11 @@ WSGI_APPLICATION = "Budget_app.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.environ["MYSQL_DATABASE"],
+        "USER": os.environ["MYSQL_USER"],
+        "PASSWORD": os.environ["MYSQL_PASSWORD"],
+        "HOST": "db",
     }
 }
 
