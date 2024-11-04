@@ -43,16 +43,6 @@ class EventFilterForm(forms.Form):
         label="Start Time After",
         widget=forms.DateTimeInput(attrs={"type": "datetime-local"}),
     )
-    start_time_before = forms.DateTimeField(
-        required=False,
-        label="Start Time Before",
-        widget=forms.DateTimeInput(attrs={"type": "datetime-local"}),
-    )
-    end_time_after = forms.DateTimeField(
-        required=False,
-        label="End Time After",
-        widget=forms.DateTimeInput(attrs={"type": "datetime-local"}),
-    )
     end_time_before = forms.DateTimeField(
         required=False,
         label="End Time Before",

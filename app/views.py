@@ -47,12 +47,6 @@ def events(request):
             events = events.filter(
                 start_time__gte=form.cleaned_data["start_time_after"]
             )
-        if form.cleaned_data["start_time_before"]:
-            events = events.filter(
-                start_time__lte=form.cleaned_data["start_time_before"]
-            )
-        if form.cleaned_data["end_time_after"]:
-            events = events.filter(end_time__gte=form.cleaned_data["end_time_after"])
         if form.cleaned_data["end_time_before"]:
             events = events.filter(end_time__lte=form.cleaned_data["end_time_before"])
         if form.cleaned_data["all_day"] is not None:
