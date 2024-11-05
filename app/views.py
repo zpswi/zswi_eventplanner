@@ -49,8 +49,8 @@ def events(request):
             )
         if form.cleaned_data["end_time_before"]:
             events = events.filter(end_time__lte=form.cleaned_data["end_time_before"])
-        if form.cleaned_data["all_day"] is not None:
-            events = events.filter(all_day=form.cleaned_data["all_day"])
+        if form.cleaned_data["all_day_select"] is not "":
+            events = events.filter(all_day=form.cleaned_data["all_day_select"])
 
     return render(request, "events/list.html", {"events": events, "form": form})
 

@@ -1,13 +1,36 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-
+{% load crispy_forms_tags %}
 <h2 class="mb-4">Upcoming Events</h2>
 
-<form method="get" class="mb-4">
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Filter</button>
-</form>
+<div class="card mb-4">
+    <h5 class="card-header">Filter events</h5>
+    <div class="card-body">
+        <form method="get" class="mb-0">
+
+            <div class="row">
+                <div class="form-group col-md-6 mb-0">
+                  {{ form.title|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.location|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.start_time_after|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.end_time_before|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.all_day_select|as_crispy_field }}
+                </div>
+              </div>
+        
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+</div>
 
 {% if events %}
     {% for event in events %}
