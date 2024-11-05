@@ -91,3 +91,13 @@ def sign_to_event(request, event_id):
     event.participants.add(request.user)
     messages.add_message(request, messages.SUCCESS, "Signed up")
     return HttpResponseRedirect(reverse("event_detail", args=[event_id]))
+
+
+def sign_off_event(request, event_id):
+    event = Event.objects.get(id=event_id)
+    if request.user not in event.participants.all():
+        messages.add_message(request, messages.ERROR, "You are not signed up")
+        return HttpResponseRedirect(reverse("event_detail", args=[event_id]))
+    event.participants.remove(request.user)
+    messages.add_message(request, messages.SUCCESS, "Signed off")
+    return HttpResponseRedirect(reverse("event_detail", args=[event_id]))
