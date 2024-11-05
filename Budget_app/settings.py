@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-&ip@7v$uybst)j%8ns#(3^&zcdona8c6*f060@qaqd4dt2kjq7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # type: ignore
 
 
 # Application definition
@@ -81,12 +81,11 @@ WSGI_APPLICATION = "Budget_app.wsgi.application"
 
 if "MYSQL_DATABASE" not in os.environ:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3', 
-                 
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "db.sqlite3",
+        }
     }
-}
 else:
     DATABASES = {
         "default": {

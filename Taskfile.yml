@@ -1,0 +1,24 @@
+version: '3'
+
+tasks:
+  shell:
+    cmds:
+      - docker compose exec app sh
+
+  run:
+    cmds:
+      - docker compose exec app poetry run python manage.py runserver 0.0.0.0:8000
+
+  mypy:
+    cmds:
+      - docker compose exec app poetry run mypy app
+
+  ruff-check:
+    cmds:
+      - docker compose exec app poetry run ruff check
+
+  ruff-fix:
+    cmds:
+      - docker compose exec app poetry run ruff format
+      - docker compose exec app poetry run ruff check --fix
+

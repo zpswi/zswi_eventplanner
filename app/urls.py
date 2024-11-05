@@ -12,5 +12,4 @@ urlpatterns = [
     path("/sign_up", views.signup, name="signup"),
     path("sing_to_event/<int:event_id>", views.sign_to_event, name="sign_to_event"),
     path("sign_off_event/<int:event_id>", views.sign_off_event, name="sign_off_event"),
-
 ]
