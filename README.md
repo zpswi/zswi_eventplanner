@@ -1,6 +1,8 @@
 # Systém pro správu událostí
 
 # Manual installation
+Install poetry:
+`pip install poetry`
 
 Install packages:
 `poetry install`
