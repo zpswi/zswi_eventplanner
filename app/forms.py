@@ -48,4 +48,9 @@ class EventFilterForm(forms.Form):
         label="End Time Before",
         widget=forms.DateTimeInput(attrs={"type": "datetime-local"}),
     )
-    all_day = forms.BooleanField(required=False, label="All Day Event")
+    
+    all_day_select = forms.ChoiceField(
+        required=False,
+        label="Type of event",
+        choices=[(None, "All events"), (True, "All day events"), (False, "Non all day events")],
+    )
