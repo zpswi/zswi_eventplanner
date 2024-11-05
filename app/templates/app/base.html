@@ -52,8 +52,8 @@
                 Toggle Dark Mode
             </button>
 
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Event name..." aria-label="Search">
+            <form class="d-flex" method="get" action="{% url 'events' %}">
+                <input class="form-control me-2" type="text" name="title" placeholder="Event name..." aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
