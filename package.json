@@ -1,0 +1,22 @@
+{
+  "name": "eventplanner",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@fullcalendar/bootstrap5": "^6.1.15",
+    "@fullcalendar/core": "^6.1.15",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
+    "@types/bun": "latest",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
+  },
+  "scripts": {
+    "build": "bun build assets/ts/index.ts --outdir=static/dist",
+    "watch": "bun build assets/ts/index.ts --outdir=static/dist --watch"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

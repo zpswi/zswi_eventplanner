@@ -18,3 +18,8 @@ Edit `.env` file and set required variables:
 Start docker containers:
 `docker-compose up -d`
 
+# Compiling assets
+
+`bun run build`
+
+`bun run watch`

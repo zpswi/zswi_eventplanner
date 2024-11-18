@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 from app.models import Event
 from django.contrib.auth import logout
 from .forms import EventFilterForm
+from django.core import serializers
 
 
 def index(request):
@@ -54,10 +55,14 @@ def events(request):
 
     return render(request, "events/list.html", {"events": events, "form": form})
 
-
 def event_detail(request, event_id):
     event = Event.objects.get(id=event_id)
     return render(request, "events/detail.html", {"event": event})
+
+
+def my_events(request):
+    data = serializers.serialize('json', Event.objects.filter(user=request.user.id))
+    return render(request, "events/my_events.html", {'events': data})
 
 
 def user_logout(request):
