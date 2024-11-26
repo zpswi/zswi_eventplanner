@@ -33,7 +33,11 @@
             </div>
             <div class="d-flex justify-content-between">
                 <div>
-                    <a href="{% url 'sign_to_event' event.id %}" class="btn btn-primary">Přihlásit se</a>
+                    {% if signed_up %}
+                        <a href="{% url 'sign_off_event' event.id %}" class="btn btn-primary">Odhlásit se</a>
+                    {% else %}
+                        <a href="{% url 'sign_to_event' event.id %}" class="btn btn-primary">Přihlásit se</a>
+                    {% endif %}
                  </div>
 
 
