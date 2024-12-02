@@ -22,7 +22,7 @@ def index(request):
 def login_test(request):
     return render(request, "app/index.html")
 
-
+@login_required
 def add_event(request):
     if request.method == "POST":
         form = AddEventForm(request.POST)
@@ -59,12 +59,13 @@ def event_detail(request, event_id):
     event = Event.objects.get(id=event_id)
     return render(request, "events/detail.html", {"event": event})
 
-
+@login_required
 def my_events(request):
     data = serializers.serialize('json', Event.objects.filter(user=request.user.id))
     return render(request, "events/my_events.html", {'events': data})
 
 
+@login_required
 def user_logout(request):
     logout(request)
     return render(request, "user/logout.html")
@@ -85,6 +86,7 @@ def signup(request):
     return render(request, "registration/signup.html", {"form": form})
 
 
+@login_required
 def sign_to_event(request, event_id):
     event = Event.objects.get(id=event_id)
     if event.participants.count() >= event.capacity:
@@ -98,6 +100,7 @@ def sign_to_event(request, event_id):
     return HttpResponseRedirect(reverse("event_detail", args=[event_id]))
 
 
+@login_required
 def sign_off_event(request, event_id):
     event = Event.objects.get(id=event_id)
     if request.user not in event.participants.all():
