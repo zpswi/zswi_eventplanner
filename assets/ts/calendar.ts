@@ -17,6 +17,7 @@ type Event = {
 
 type EventModel = {
     fields: Event,
+    pk: number,
 }
 
 export const CalendarInitializer = () => {
@@ -29,7 +30,14 @@ export const CalendarInitializer = () => {
         }
 
         const events = JSON.parse(calendarElement.dataset.events ?? '[]') as EventModel[]
-        const mappedEvents = mapEvents(events.map(event => event.fields))
+        const mappedEvents = mapEvents(
+            events.map(event => {
+                return {
+                    pk: event.pk,
+                    event: event.fields
+                }
+            })
+        )
 
         const calendar = new Calendar(calendarElement, {
             plugins: [
@@ -46,18 +54,22 @@ export const CalendarInitializer = () => {
             initialView: 'dayGridMonth',
             editable: true,
             events: mappedEvents,
+            eventClick: (info) => {
+                window.location.href = info.event.extendedProps.link
+            }
         })
 
         calendar.render()
     }
 
-    const mapEvents = (events: Event[]) => {
-        return events.map(event => {
+    const mapEvents = (events: { pk: number, event: Event }[]) => {
+        return events.map(entry => {
             return {
-                title: event.title,
-                start: new Date(event.start_time),
-                end: new Date(event.end_time),
-                allDay: event.all_day,
+                title: entry.event.title,
+                start: new Date(entry.event.start_time),
+                end: new Date(entry.event.end_time),
+                allDay: entry.event.all_day,
+                link: `/app/event/${entry.pk}`
             }
         })
     }
