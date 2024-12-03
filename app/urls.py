@@ -11,6 +11,7 @@ urlpatterns = [
     path("/event/<int:event_id>", views.event_detail, name="event_detail"),
     path("/add_event", views.add_event, name="add_event"),
     path("/sign_up", views.signup, name="signup"),
-    path("sing_to_event/<int:event_id>", views.sign_to_event, name="sign_to_event"),
-    path("sign_off_event/<int:event_id>", views.sign_off_event, name="sign_off_event"),
+    path("/sing_to_event/<int:event_id>", views.sign_to_event, name="sign_to_event"),
+    path("/sign_off_event/<int:event_id>", views.sign_off_event, name="sign_off_event"),
+    path("/remove_user_from_event/<int:event_id>/<int:removed_user_id>", views.remove_user_from_event, name="remove_user_from_event"),
 ]
