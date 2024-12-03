@@ -57,7 +57,10 @@ def events(request):
 
 def event_detail(request, event_id):
     event = Event.objects.get(id=event_id)
-    return render(request, "events/detail.html", {"event": event})
+    return render(request, "events/detail.html", {
+        "event": event,
+        "signed_up": request.user in event.participants.all(),
+    })
 
 @login_required
 def my_events(request):
@@ -108,4 +111,16 @@ def sign_off_event(request, event_id):
         return HttpResponseRedirect(reverse("event_detail", args=[event_id]))
     event.participants.remove(request.user)
     messages.add_message(request, messages.SUCCESS, "Signed off")
+    return HttpResponseRedirect(reverse("event_detail", args=[event_id]))
+
+@login_required
+def remove_user_from_event(request, event_id, removed_user_id):
+    event = Event.objects.get(id=event_id)
+
+    if request.user != event.user:
+        return HttpResponseRedirect(reverse("event_detail", args=[event_id]))
+
+    event.participants.remove(removed_user_id)
+    messages.add_message(request, messages.SUCCESS, "User removed")
+
     return HttpResponseRedirect(reverse("event_detail", args=[event_id]))
